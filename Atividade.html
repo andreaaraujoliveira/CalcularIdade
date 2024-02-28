@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário JavaScript</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        label {
+            display: inline-block;
+            width: 150px;
+            margin-bottom: 10px;
+            text-align: right;
+        }
+        input {
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        .form-row {
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #resultado img {
+            margin-top: 20px;
+            max-width: 200px;
+            max-height: 200px;
+        }
+        #signature {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #f2f2f2;
+            padding: 10px 0;
+            text-align: center;
+            font-style: italic;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Digite seu nome, sobrenome e ano de nascimento:</h2>
+
+<form id="form">
+    <div class="form-row">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome">
+        <label for="sobrenome">Sobrenome:</label>
+        <input type="text" id="sobrenome" name="sobrenome">
+    </div>
+    <div class="form-row">
+        <label for="anoNascimento">Ano de Nascimento:</label>
+        <input type="number" id="anoNascimento" name="anoNascimento">
+        <button type="button" onclick="exibirDados()">Juntar Nome e Calcular Idade</button>
+    </div>
+</form>
+
+<div id="resultado"></div>
+
+<div id="signature">
+    <p>Criado por Andréa Araujo Oliveira, IFTO 2024, Sistemas para Internet</p>
+</div>
+
+<script>
+        function exibirDados() {
+            // Obter os valores digitados pelo usuário
+            var nome = document.getElementById('nome').value;
+            var sobrenome = document.getElementById('sobrenome').value;
+            var anoNascimento = document.getElementById('anoNascimento').value;
+
+            // Validar se todos os campos foram preenchidos
+            if (nome === '' || sobrenome === '' || anoNascimento === '') {
+                alert('Por favor, preencha todos os campos.');
+                return;
+            }
+
+            // Concatenar nome e sobrenome
+            var nomeCompleto = nome + ' ' + sobrenome;
+
+            // Calcular a idade
+            var anoAtual = new Date().getFullYear();
+            var idade = anoAtual - anoNascimento;
+
+            // Definir a situação com base na idade
+            var situacao;
+            var imagemSrc;
+            if (idade <= 20) {
+                situacao = "Novinho";
+                imagemSrc = 'novinha.jpeg';
+            } else if (idade <= 40) {
+                situacao = "Maduro";
+                imagemSrc = 'madura.jpeg';
+            } else if (idade <= 99) {
+                situacao = "Velho";
+                imagemSrc = 'velho.jpeg';
+            } else {
+                situacao = "Morto";
+                imagemSrc = 'morreu.jpeg';
+            }
+
+            // Exibir resultado na página
+            var resultadoElement = document.getElementById('resultado');
+            resultadoElement.innerHTML = 'Nome Completo: ' + nomeCompleto + '<br>Idade: ' + idade + ' anos' + '<br>Situação: ' + situacao + '<br><img src="' + imagemSrc + '" alt="' + situacao + '">';
+
+        }
+    </script>
+
+</body>
+</html>

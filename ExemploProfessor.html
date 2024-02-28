@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Concatenar Nome e Calcular Idade</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        input {
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Digite seu nome e ano de nascimento:</h2>
+
+    <label for="nome">Nome:</label>
+    <input type="text" id="nome" placeholder="Digite seu nome">
+
+    <label for="sobrenome">Sobrenome:</label>
+    <input type="text" id="sobrenome" placeholder="Digite seu sobrenome">
+
+    <label for="anoNascimento">Ano de Nascimento:</label>
+    <input type="number" id="anoNascimento" placeholder="Digite seu ano de nascimento">
+
+    <button onclick="juntarENcalcularIdade()">Juntar Nome e Calcular Idade</button>
+
+    <p id="resultado"></p>
+
+    <script>
+        function juntarENcalcularIdade() {
+            // Obter os valores digitados pelo usuário
+            var nome = document.getElementById('nome').value;
+            var sobrenome = document.getElementById('sobrenome').value;
+            var anoNascimento = document.getElementById('anoNascimento').value;
+
+            // Validar se todos os campos foram preenchidos
+            if (nome === '' || sobrenome === '' || anoNascimento === '') {
+                alert('Por favor, preencha todos os campos.');
+                return;
+            }
+
+            // Concatenar nome e sobrenome
+            var nomeCompleto = nome + ' ' + sobrenome;
+
+            // Calcular a idade
+            var anoAtual = new Date().getFullYear();
+            var idade = anoAtual - anoNascimento;
+            
+            if (idade <= 20) {
+                var situacao = "Novinho";
+            }
+            if(idade > 20 & idade <= 40){
+                var situacao = "Maduro";
+            }
+            if(idade > 40 & idade <=99){
+                var situacao = "Velho";
+            }
+            if(idade > 99){
+                var situacao = "Morto";
+            }
+            
+            // Exibir resultado na página
+            var resultadoElement = document.getElementById('resultado');
+            resultadoElement.innerHTML = 'Nome Completo: ' + nomeCompleto +' <br>Idade: ' + idade + ' anos'+' <br>Situação: ' + situacao;
+        }
+    </script>
+
+</body>
+</html>
